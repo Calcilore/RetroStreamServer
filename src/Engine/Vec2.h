@@ -6,6 +6,7 @@ class Vec2 {
         float x;
         float y;
 
+        Vec2(float s);
         Vec2(float x, float y);
         Vec2();
 

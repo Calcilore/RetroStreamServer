@@ -1,7 +1,12 @@
 #include "Vec2I.h"
 #include <cmath>
 
-Vec2I::Vec2I(int x, int y) {
+Vec2I::Vec2I(const int s) {
+    this->x = s;
+    this->y = s;
+}
+
+Vec2I::Vec2I(const int x, const int y) {
     this->x = x;
     this->y = y;
 }

@@ -6,6 +6,7 @@ class Vec2I {
         int x;
         int y;
 
+        Vec2I(int s);
         Vec2I(int x, int y);
         Vec2I();
 
