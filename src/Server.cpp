@@ -146,7 +146,7 @@ Game* Server::getGameFromPlayer() const {
 }
 
 void Server::Loop() {
-    printf("Started Server!");
+    printf("Started Server!\n");
 
     while (keepRunning) {
         auto start = high_resolution_clock::now();
