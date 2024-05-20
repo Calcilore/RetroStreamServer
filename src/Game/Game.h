@@ -2,6 +2,8 @@
 #define GAME_H
 
 #include <boost/asio.hpp>
+
+#include "../Engine/Color.h"
 #include "../Engine/Vec2I.h"
 
 class Server;
@@ -28,6 +30,12 @@ protected:
     void ClearScreen(uint8_t color);
 
 public:
+    Color palette[16] = {
+        Color{255, 255, 255}, Color{0, 0, 0}, Color{230, 41, 55}, Color{0, 228, 48},
+        Color{0, 121, 241}, Color{253, 249, 0}, Color{255, 161, 0}, Color{200, 122, 255},
+        Color{130, 130, 130}, Color{80, 80, 80}, Color{190, 33, 55}, Color{0, 117, 44},
+        Color{0, 82, 172}, Color{255, 203, 0}, Color{127, 106, 79}, Color{255, 109, 194}};
+
     uint8_t pixelData[PIXEL_DATA_SIZE] = {};
     std::vector<udp::endpoint> players = {};
     int code = 0;

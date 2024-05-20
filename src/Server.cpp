@@ -159,9 +159,11 @@ void Server::Loop() {
 
             for (const auto& player : game->players) {
                 // DRAW:
-                std::array<uint8_t, PIXEL_DATA_SIZE+1> rawBuffer{};
+                // Len: Packet Type + Palette + Pixel Data
+                std::array<uint8_t, 1+16*3+PIXEL_DATA_SIZE> rawBuffer{};
                 rawBuffer[0] = S2C_UPDATE_DATA;
-                std::copy(std::begin(game->pixelData), std::end(game->pixelData), rawBuffer.begin()+1);
+                std::memcpy(rawBuffer.begin()+1, game->palette, 16*3);
+                std::memcpy(rawBuffer.begin()+1+16*3, game->pixelData, PIXEL_DATA_SIZE);
 
                 const boost::asio::const_buffer buffer(rawBuffer.begin(), rawBuffer.size());
                 sendPacket(buffer, player);

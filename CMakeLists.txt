@@ -20,6 +20,7 @@ add_executable(RetroServer src/Main.cpp
         src/Game/Snake.cpp
         src/Game/Snake.h
         src/PacketTypes.h
+        src/Engine/Color.h
 )
 
 target_link_libraries(RetroServer ${Boost_LIBRARIES})
