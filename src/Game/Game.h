@@ -25,8 +25,9 @@ private:
     virtual void playerInput(udp::endpoint ep, bool pressed, uint8_t input) {}
 
 protected:
-    void SetPixel(Vec2I pos, uint8_t color);
-    void SetPixel(int pos, uint8_t color);
+    void DrawPixel(Vec2I pos, uint8_t color);
+    void DrawPixel(int pos, uint8_t color);
+    void DrawRect(Vec2I pos, Vec2I size, uint8_t color);
     void ClearScreen(uint8_t color);
 
 public:

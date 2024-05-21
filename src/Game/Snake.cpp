@@ -42,7 +42,7 @@ void Snake::update() {
         }
 
         for (const Vec2I pixel : player.segments) {
-            SetPixel(pixel, player.color);
+            DrawPixel(pixel, player.color);
         }
 
         if (player.segments.empty()) {
@@ -50,7 +50,7 @@ void Snake::update() {
         }
     }
 
-    SetPixel(apple, 0xf);
+    DrawPixel(apple, 0xf);
 }
 
 void Snake::playerInput(const udp::endpoint ep, const bool pressed, const uint8_t input) {

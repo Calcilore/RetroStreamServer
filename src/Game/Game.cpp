@@ -21,11 +21,11 @@ Game::Game(Server* server) {
     printf("Code is: %d\n", code);
 }
 
-void Game::SetPixel(const Vec2I pos, const uint8_t color) {
-    SetPixel(pos.y * GAME_WIDTH + pos.x, color);
+void Game::DrawPixel(const Vec2I pos, const uint8_t color) {
+    DrawPixel(pos.y * GAME_WIDTH + pos.x, color);
 }
 
-void Game::SetPixel(const int index, const uint8_t color) {
+void Game::DrawPixel(const int index, const uint8_t color) {
     const int realIndex = (index / 2) % PIXEL_DATA_SIZE;
     const uint8_t oldData = pixelData[realIndex];
 
@@ -35,6 +35,31 @@ void Game::SetPixel(const int index, const uint8_t color) {
     } else {
         // keep first half of oldData while replacing second half of new data
         pixelData[realIndex] = (oldData & FIRST_HALF) | (color & SECOND_HALF);
+    }
+}
+
+void Game::DrawRect(const Vec2I pos, const Vec2I size, const uint8_t color) {
+    const uint8_t doubleColor = color | (color << 4);
+    const Vec2I end = pos+size;
+
+    const bool oddStart = pos.x % 2;
+    const bool oddEnd = end.x % 2;
+
+    const int startIndex = (pos.x + oddStart) / 2;
+    const int endIndex = (end.x - oddEnd) / 2;
+
+    for (int y = pos.y; y < end.y; ++y) {
+        for (int x = startIndex; x < endIndex; ++x) {
+            pixelData[x + y*GAME_WIDTH/2] = doubleColor;
+        }
+
+        if (oddStart) {
+            DrawPixel(Vec2I(pos.x, y), color);
+        }
+
+        if (oddEnd) {
+            DrawPixel(Vec2I(end.x-1, y), color);
+        }
     }
 }
 

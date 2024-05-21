@@ -2,7 +2,7 @@
 
 void TestGame::update() {
     for (int i = 0; i < GAME_AREA; ++i) {
-        SetPixel(i, i % 16);
+        DrawPixel(i, i % 16);
     }
 
     // for (int i = 0; i < 1; ++i) {
